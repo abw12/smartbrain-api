@@ -6,7 +6,7 @@ const knex=require('knex');
 const db=knex({
 	client:'pg',
 	connection:{
-		host:'127.0.0.1',
+		host:'postgresql-acute-91822',
 		user:'postgres'	,		//owner of the database which is in our case is psotgres 
 		password:'Maxwell@32',
 		database:'smartbrain'
@@ -41,7 +41,7 @@ app.use(cors());
 
 ]}*/
 app.get('/',(req, res)=>{
-	res.send(database.users);
+	res.send('its working');
 })
 
 app.post('/signin',(req,res)=>{signin.handleSignin(req,res,bcrypt,db)});
