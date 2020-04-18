@@ -1,7 +1,7 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const bcrypt=require('bcrypt-nodejs');
-const cors=require('cors');
+var cors = require('cors')
 const knex=require('knex');
 const db=knex({
 	client:'pg',
@@ -14,8 +14,8 @@ const register= require('./controllers/register');
 const signin=require('./controllers/signin');
 const profile=require('./controllers/profile');
 const image=require('./controllers/image');
-const app=express();
-app.use(cors());
+const app=express()
+app.use(cors())
 app.use(bodyParser.json());
 
 
