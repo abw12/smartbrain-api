@@ -1,7 +1,7 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const bcrypt=require('bcrypt-nodejs');
-var cors = require('cors')
+const cors = require('cors')
 const knex=require('knex');
 const db=knex({
 	client:'pg',
@@ -10,10 +10,7 @@ const db=knex({
 		ssl:true,
 	}
 });
-var corsOptions = {
-  origin: 'https://smartfacedetect-app.herokuapp.com',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+
 const register= require('./controllers/register');
 const signin=require('./controllers/signin');
 const profile=require('./controllers/profile');
@@ -49,7 +46,7 @@ app.get('/',(req, res)=>{
 
 app.post('/signin',(req,res)=>{signin.handleSignin(req,res,bcrypt,db)});
 
-app.post('/register',cors(corsOptions),(req,res)=>{register.handleRegister(req,res,bcrypt,db)});
+app.post('/register',(req,res)=>{register.handleRegister(req,res,bcrypt,db)});
 
 app.get('/profile/:id',(req,res)=>{profile.handleProfileGet(req,res,db)});
 
