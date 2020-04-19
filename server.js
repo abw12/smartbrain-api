@@ -10,6 +10,10 @@ const db=knex({
 		ssl:true,
 	}
 });
+var corsOptions = {
+  origin: 'https://smartfacedetect-app.herokuapp.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 const register= require('./controllers/register');
 const signin=require('./controllers/signin');
 const profile=require('./controllers/profile');
@@ -45,7 +49,7 @@ app.get('/',(req, res)=>{
 
 app.post('/signin',(req,res)=>{signin.handleSignin(req,res,bcrypt,db)});
 
-app.post('/register',cors(),(req,res)=>{register.handleRegister(req,res,bcrypt,db)});
+app.post('/register',cors(corsOptions),(req,res)=>{register.handleRegister(req,res,bcrypt,db)});
 
 app.get('/profile/:id',(req,res)=>{profile.handleProfileGet(req,res,db)});
 
