@@ -12,7 +12,7 @@ const image=require('./controllers/image');
 const db=knex({
 	client:'pg',
 	connection:{
-		connectionString : "postgresql-acute-91822",
+		connectionString : process.env.DATABASE_URL,
 		ssl:true,
 	}
 });
@@ -22,7 +22,7 @@ const app=express()
 app.use(cors())
 app.use(bodyParser.json());
 
-
+ console.log(process.env.DATABASE_URL);
 /*const database={
 	users:[
 	{
@@ -58,6 +58,6 @@ app.put('/image',(req,res)=>{image.handleImage(req,res,db)});
 app.post('/imageurl',(req,res)=>{image.handleApiCall(req,res)});
 
 const PORT=process.env.PORT
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT || 3000,()=>{
 	console.log("App is running on port "+PORT);
 })
